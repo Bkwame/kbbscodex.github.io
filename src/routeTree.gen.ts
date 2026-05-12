@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TagsTagRouteImport } from './routes/tags.$tag'
 import { Route as PostsSlugRouteImport } from './routes/posts.$slug'
+import { Route as ApiPublicRssRouteImport } from './routes/api/public/rss'
 
 const TagsRoute = TagsRouteImport.update({
   id: '/tags',
@@ -46,6 +47,11 @@ const PostsSlugRoute = PostsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => PostsRoute,
 } as any)
+const ApiPublicRssRoute = ApiPublicRssRouteImport.update({
+  id: '/api/public/rss',
+  path: '/api/public/rss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/tags': typeof TagsRouteWithChildren
   '/posts/$slug': typeof PostsSlugRoute
   '/tags/$tag': typeof TagsTagRoute
+  '/api/public/rss': typeof ApiPublicRssRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/tags': typeof TagsRouteWithChildren
   '/posts/$slug': typeof PostsSlugRoute
   '/tags/$tag': typeof TagsTagRoute
+  '/api/public/rss': typeof ApiPublicRssRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,12 +79,27 @@ export interface FileRoutesById {
   '/tags': typeof TagsRouteWithChildren
   '/posts/$slug': typeof PostsSlugRoute
   '/tags/$tag': typeof TagsTagRoute
+  '/api/public/rss': typeof ApiPublicRssRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/posts' | '/tags' | '/posts/$slug' | '/tags/$tag'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/posts'
+    | '/tags'
+    | '/posts/$slug'
+    | '/tags/$tag'
+    | '/api/public/rss'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/posts' | '/tags' | '/posts/$slug' | '/tags/$tag'
+  to:
+    | '/'
+    | '/about'
+    | '/posts'
+    | '/tags'
+    | '/posts/$slug'
+    | '/tags/$tag'
+    | '/api/public/rss'
   id:
     | '__root__'
     | '/'
@@ -85,6 +108,7 @@ export interface FileRouteTypes {
     | '/tags'
     | '/posts/$slug'
     | '/tags/$tag'
+    | '/api/public/rss'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -92,6 +116,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   PostsRoute: typeof PostsRouteWithChildren
   TagsRoute: typeof TagsRouteWithChildren
+  ApiPublicRssRoute: typeof ApiPublicRssRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -138,6 +163,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsSlugRouteImport
       parentRoute: typeof PostsRoute
     }
+    '/api/public/rss': {
+      id: '/api/public/rss'
+      path: '/api/public/rss'
+      fullPath: '/api/public/rss'
+      preLoaderRoute: typeof ApiPublicRssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -166,7 +198,18 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   PostsRoute: PostsRouteWithChildren,
   TagsRoute: TagsRouteWithChildren,
+  ApiPublicRssRoute: ApiPublicRssRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
