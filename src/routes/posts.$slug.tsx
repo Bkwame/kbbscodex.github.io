@@ -12,10 +12,10 @@ export const Route = createFileRoute("/posts/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
     const { post } = loaderData;
-    const desc = post.summary ?? `${post.title} — notes on bioinformatics & genomics.`;
+    const desc = post.summary ?? `${post.title} — kbb's codex.`;
     return {
       meta: [
-        { title: `${post.title} — Notes on bioinformatics & genomics` },
+        { title: `${post.title} — kbb's codex` },
         { name: "description", content: desc },
         { property: "og:type", content: "article" },
         { property: "og:title", content: post.title },

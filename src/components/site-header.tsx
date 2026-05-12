@@ -17,7 +17,7 @@ export function SiteHeader() {
           to="/"
           className="font-serif text-[1.05rem] font-semibold tracking-tight text-ink hover:text-primary transition-colors"
         >
-          notes on bioinformatics
+          kbb's codex
         </Link>
         <nav className="flex items-center gap-1 text-sm">
           {navLinks.map((l) => (

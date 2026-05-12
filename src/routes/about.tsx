@@ -4,13 +4,13 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About — Notes on bioinformatics & genomics" },
+      { title: "About — kbb's codex" },
       {
         name: "description",
         content:
           "About me and this learning journal on bioinformatics, genomics, and computational biology.",
       },
-      { property: "og:title", content: "About — Notes on bioinformatics & genomics" },
+      { property: "og:title", content: "About — kbb's codex" },
       {
         property: "og:description",
         content: "About me and this learning journal on bioinformatics & genomics.",
