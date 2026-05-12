@@ -2,12 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { Rss } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
-const navLinks = [
+const navLinks: { to: "/" | "/posts" | "/tags" | "/about"; label: string; exact?: boolean }[] = [
   { to: "/", label: "Home", exact: true },
   { to: "/posts", label: "Archive" },
   { to: "/tags", label: "Tags" },
   { to: "/about", label: "About" },
-] as const;
+];
 
 export function SiteHeader() {
   return (
