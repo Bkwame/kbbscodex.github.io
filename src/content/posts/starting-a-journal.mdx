@@ -1,0 +1,41 @@
+---
+title: "Starting a journal on bioinformatics"
+date: 2026-05-12
+tags: [meta, learning]
+summary: "Why I'm keeping a public notebook while learning genomics and the tooling around it."
+---
+
+I've spent the last few months reading papers, breaking pipelines, and squinting at FASTQ
+files. This site is a place to write things down — partly for my future self, partly so
+that other beginners can stumble on the same gotchas a little faster.
+
+## What I'll write about
+
+- **Tools**: hands-on notes on `bwa`, `minimap2`, `samtools`, `bcftools`, `nf-core` workflows.
+- **Algorithms**: short explainers on the data structures behind alignment and assembly
+  (FM-index, suffix arrays, minimizers, de Bruijn graphs).
+- **Papers**: weekly digests of papers I'm trying to understand, with the maths spelled out.
+- **Mistakes**: every single time I burn an afternoon on a silly bug, it lives here.
+
+## A small example
+
+Given a read of length $\ell$ and a $k$-mer size of $k$, the number of $k$-mers per read is
+
+$$
+n_k = \ell - k + 1.
+$$
+
+For Illumina-style 150 bp reads with $k = 21$, that's 130 minimizers per read before any
+sketching. Useful to keep in your head when you're sizing a hash table.
+
+```python
+def kmers(seq: str, k: int):
+    """Yield all k-mers of length k from seq."""
+    for i in range(len(seq) - k + 1):
+        yield seq[i : i + k]
+
+list(kmers("ACGTACGT", 3))
+# ['ACG', 'CGT', 'GTA', 'TAC', 'ACG', 'CGT']
+```
+
+That's it for the first post — short on purpose. See you next week.
