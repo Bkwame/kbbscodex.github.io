@@ -3,13 +3,43 @@
 //   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, cloudflare (build-only),
 //     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
 //     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import mdx from "@mdx-js/rollup";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import rehypeShiki from "@shikijs/rehype";
 
-// Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-// @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
 export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
+  },
+  vite: {
+    plugins: [
+      {
+        enforce: "pre",
+        ...mdx({
+          remarkPlugins: [
+            remarkFrontmatter,
+            [remarkMdxFrontmatter, { name: "frontmatter" }],
+            remarkGfm,
+            remarkMath,
+          ],
+          rehypePlugins: [
+            [
+              rehypeShiki,
+              {
+                themes: { light: "github-light", dark: "github-dark-dimmed" },
+                defaultColor: false,
+              },
+            ],
+            rehypeKatex,
+          ],
+          providerImportSource: "@mdx-js/react",
+        }),
+      },
+    ],
   },
 });

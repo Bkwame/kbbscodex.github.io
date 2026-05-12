@@ -1,0 +1,54 @@
+---
+title: "Notes on the FM-index"
+date: 2026-05-08
+tags: [algorithms, alignment, indexing]
+summary: "The data structure behind BWA, bowtie, and most short-read aligners — explained slowly."
+---
+
+The **FM-index** is the reason a 3 GB human reference genome can be searched in
+milliseconds inside a few hundred megabytes of RAM. It powers `bwa`, `bowtie2`, and
+plenty of pangenome tooling. Here's the short version.
+
+## The core trick
+
+Given a string $T$ of length $n$, the FM-index stores three things:
+
+1. The **Burrows–Wheeler transform** $\mathrm{BWT}(T)$, a permutation of $T$ with strong
+   local similarity (compresses well).
+2. A small **C-table** with cumulative character counts.
+3. **Occ samples** — sparse tallies of how often each character has appeared in
+   $\mathrm{BWT}$ up to some position.
+
+To count occurrences of a pattern $P$ of length $m$, do a *backward search*:
+
+$$
+\mathrm{sp}_i = C[c] + \mathrm{Occ}(c, \mathrm{sp}_{i+1} - 1) + 1
+$$
+
+…shrinking the interval $[\mathrm{sp}, \mathrm{ep}]$ one character at a time, right-to-left
+through $P$. Total cost: $O(m)$ — independent of $n$.
+
+## A toy implementation
+
+```python
+def bwt(s: str) -> str:
+    s = s + "$"
+    rotations = sorted(s[i:] + s[:i] for i in range(len(s)))
+    return "".join(r[-1] for r in rotations)
+
+bwt("genomics")
+# 'sc$gnmoie' (or similar — ordering depends on $)
+```
+
+Real implementations use suffix-array construction (DC3, SA-IS) and store a
+*sampled* suffix array so that you can recover the original positions, not just counts.
+
+## Why it matters for sequencing
+
+Short-read aligners do millions of these queries per second. The FM-index is what
+turns "search a 3 Gb genome" into "do an $O(m)$ backward walk in cache-friendly
+arrays." Once you've internalised that, papers like the original BWA paper read
+much more easily.
+
+> Recommended next read: Ferragina & Manzini (2000), *Opportunistic data structures
+> with applications.*
