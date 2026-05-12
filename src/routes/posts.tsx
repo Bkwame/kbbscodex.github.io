@@ -6,9 +6,9 @@ export const Route = createFileRoute("/posts")({
   component: PostsArchive,
   head: () => ({
     meta: [
-      { title: "Archive — Notes on bioinformatics & genomics" },
+      { title: "Archive — kbb's codex" },
       { name: "description", content: "All posts, grouped by year." },
-      { property: "og:title", content: "Archive — Notes on bioinformatics & genomics" },
+      { property: "og:title", content: "Archive — kbb's codex" },
       { property: "og:description", content: "All posts, grouped by year." },
     ],
   }),

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/tags/$tag")({
     if (!loaderData) return {};
     return {
       meta: [
-        { title: `#${loaderData.tag} — Notes on bioinformatics & genomics` },
+        { title: `#${loaderData.tag} — kbb's codex` },
         { name: "description", content: `Posts tagged ${loaderData.tag}.` },
         { property: "og:title", content: `#${loaderData.tag}` },
         { property: "og:description", content: `Posts tagged ${loaderData.tag}.` },

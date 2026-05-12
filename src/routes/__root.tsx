@@ -69,13 +69,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Notes on bioinformatics & genomics" },
+      { title: "kbb's codex" },
       {
         name: "description",
         content:
           "A learning journal on bioinformatics, genomics, sequencing, and computational biology.",
       },
-      { property: "og:title", content: "Notes on bioinformatics & genomics" },
+      { property: "og:title", content: "kbb's codex" },
       {
         property: "og:description",
         content: "A learning journal on bioinformatics, genomics, and computational biology.",
@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "alternate",
         type: "application/rss+xml",
-        title: "Notes on bioinformatics & genomics — RSS",
+        title: "kbb's codex — RSS",
         href: "/api/public/rss",
       },
     ],

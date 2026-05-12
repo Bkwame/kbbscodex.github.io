@@ -5,9 +5,9 @@ export const Route = createFileRoute("/tags")({
   component: TagsPage,
   head: () => ({
     meta: [
-      { title: "Tags — Notes on bioinformatics & genomics" },
+      { title: "Tags — kbb's codex" },
       { name: "description", content: "Browse posts by topic." },
-      { property: "og:title", content: "Tags — Notes on bioinformatics & genomics" },
+      { property: "og:title", content: "Tags — kbb's codex" },
       { property: "og:description", content: "Browse posts by topic." },
     ],
   }),

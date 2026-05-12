@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getAllPostMeta } from "@/lib/posts";
 
-const SITE_TITLE = "Notes on bioinformatics & genomics";
+const SITE_TITLE = "kbb's codex";
 const SITE_DESCRIPTION =
   "A learning journal on bioinformatics, genomics, sequencing, and computational biology.";
 
