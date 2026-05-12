@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getAllPostMeta } from "@/lib/posts";
 import { PostList } from "@/components/post-list";
 
-export const Route = createFileRoute("/posts")({
+export const Route = createFileRoute("/posts/")({
   component: PostsArchive,
   head: () => ({
     meta: [
