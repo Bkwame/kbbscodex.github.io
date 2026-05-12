@@ -1,26 +1,47 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { getAllPostMeta } from "@/lib/posts";
+import { PostList } from "@/components/post-list";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Home,
+  head: () => ({
+    meta: [
+      { title: "Notes on bioinformatics & genomics" },
+      {
+        name: "description",
+        content:
+          "A learning journal on bioinformatics, genomics, sequencing tools, and computational biology.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Home() {
+  const recent = getAllPostMeta().slice(0, 5);
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="mx-auto max-w-3xl px-5 pb-16 pt-12 sm:pt-20">
+      <section className="mb-14">
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          Learning bioinformatics, in the open.
+        </h1>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          A working notebook on genomics, sequencing, and the tools and algorithms behind
+          them — written as I learn, with all the wrong turns left in.
+        </p>
+      </section>
+
+      <section>
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="font-serif text-lg font-semibold text-ink">Recent posts</h2>
+          <Link
+            to="/posts"
+            className="text-sm text-muted-foreground transition-colors hover:text-primary"
+          >
+            All posts →
+          </Link>
+        </div>
+        <PostList posts={recent} />
+      </section>
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
