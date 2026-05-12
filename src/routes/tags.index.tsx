@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { getAllTags } from "@/lib/posts";
 
-export const Route = createFileRoute("/tags")({
+export const Route = createFileRoute("/tags/")({
   component: TagsPage,
   head: () => ({
     meta: [
