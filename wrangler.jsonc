@@ -6,7 +6,7 @@
   "main": "src/server.ts",
   "routes": [
     {
-      "pattern": "blog.yourdomain.io",
+      "pattern": "kbbscodex.com",
       "custom_domain": true
     }
   ]
