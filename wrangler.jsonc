@@ -6,7 +6,7 @@
   "main": "src/server.ts",
   "routes": [
     {
-      "pattern": "blog.yourdomain.com",
+      "pattern": "blog.yourdomain.io",
       "custom_domain": true
     }
   ]
