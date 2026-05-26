@@ -25,22 +25,23 @@ function AboutPage() {
       <header className="mb-10">
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">About</p>
         <h1 className="mt-2 font-serif text-3xl font-semibold tracking-tight text-ink">
-          Hi — I'm learning bioinformatics in the open.
+          Hi — I'm Kwame,
         </h1>
       </header>
 
       <div className="prose">
         <p>
-          I'm a researcher (in training) working through bioinformatics, genomics, and the
+          A researcher (in training) working through bioinformatics, genomics, and the
           algorithms that make modern sequencing possible. This site is the public version
           of my notebook: short posts on tools, papers, and the bugs I hit along the way.
         </p>
 
         <h2>What you'll find here</h2>
         <ul>
-          <li>Hands-on notes on read aligners, variant callers, and assemblers.</li>
-          <li>Slow walkthroughs of algorithms — FM-index, minimizers, de Bruijn graphs.</li>
-          <li>Notes on papers I'm trying to understand, with the maths kept explicit.</li>
+          <li>Hands-on notes and my two takes on tools.</li>
+          <li>Slow walkthroughs of algorithms.</li>
+          <li>Notes on papers I'm trying to understand.</li>
+          <li>My experiences around bioinformatics</li>
         </ul>
 
         <h2>Elsewhere</h2>

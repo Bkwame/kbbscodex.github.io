@@ -22,11 +22,11 @@ function Home() {
     <div className="mx-auto max-w-3xl px-5 pb-16 pt-12 sm:pt-20">
       <section className="mb-14">
         <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-          Learning bioinformatics, in the open.
+          Learning bioinformatics, in bits and kmers.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
           A working notebook on genomics, sequencing, and the tools and algorithms behind
-          them — written as I learn, with all the wrong turns left in.
+          them — written as I learn.
         </p>
       </section>
 
