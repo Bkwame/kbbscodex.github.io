@@ -10,10 +10,28 @@ served at `/posts/treemmer-review`.
 2. `bun run dev`, then open <http://localhost:8080>. Leave it running.
 3. Edit the `.mdx` file and save. The browser refreshes by itself.
 4. When you're happy: `Ctrl + C`, then `bun run build` to make sure it builds.
-5. `git add`, `git commit -m "..."`, `git push`. Cloudflare redeploys the live site.
+5. Publish:
 
-If you want to look at your changes before committing: `git status` lists the files
-you changed, and `git diff` shows the lines.
+   ```powershell
+   git status                 # see everything you changed or added
+   git add -A                 # stage ALL of it, including new folders and images
+   git commit -m "Short description of the change"
+   git status                 # must say "nothing to commit, working tree clean"
+   git push
+   ```
+
+6. On GitHub, wait for the green tick next to your commit, then refresh the site
+   with `Ctrl + Shift + R`.
+
+The second `git status` is the important check. Your local preview uses every file on
+your computer, but Cloudflare only sees what you committed. If a file is left out (a
+new image, a component, the `public` folder), the post works locally and the live build
+fails. "Working tree clean" means GitHub now has exactly what you previewed.
+
+If a build fails, the live site keeps the last working version. Click the red cross
+next to the commit on GitHub, then **Details**, to read the error.
+
+`git diff` shows the exact lines you changed, if you want to review before committing.
 
 ## The top of every post (frontmatter)
 
