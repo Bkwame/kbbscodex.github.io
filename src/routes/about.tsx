@@ -25,7 +25,7 @@ function AboutPage() {
       <header className="mb-10">
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">About</p>
         <h1 className="mt-2 font-serif text-3xl font-semibold tracking-tight text-ink">
-          Hi — I'm Kwame,
+          Hi, I'm Kwame.
         </h1>
       </header>
 
@@ -41,26 +41,35 @@ function AboutPage() {
           <li>Hands-on notes and my two takes on tools.</li>
           <li>Slow walkthroughs of algorithms.</li>
           <li>Notes on papers I'm trying to understand.</li>
-          <li>My experiences around bioinformatics</li>
+          <li>My experiences around bioinformatics.</li>
         </ul>
 
         <h2>Elsewhere</h2>
         <ul>
           <li>
-            <a href="https://github.com" target="_blank" rel="noreferrer">
+            <a href="https://github.com/Bkwame" target="_blank" rel="noreferrer">
               GitHub
-            </a>{" "}
-            — code and pipelines.
+            </a>
+            : code and pipelines.
           </li>
           <li>
-            <a href="/api/public/rss">RSS feed</a> — for a quieter inbox.
+            <a href="/api/public/rss">RSS feed</a>: add this link to a feed reader (Feedly,
+            Inoreader, NetNewsWire and so on) and new posts will show up there automatically,
+            no email sign-up needed.
           </li>
         </ul>
 
         <h2>Get in touch</h2>
         <p>
-          Spotted an error or have something to add? Open an issue on the GitHub repo for
-          this site and I'll read it.
+          Spotted an error or have something to add?{" "}
+          <a
+            href="https://github.com/Bkwame/kbbscodex.github.io/issues"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open an issue on this site's GitHub repository
+          </a>{" "}
+          and I'll read it.
         </p>
       </div>
     </div>

@@ -7,14 +7,26 @@ export function SiteFooter() {
         </p>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com"
+            href="https://github.com/Bkwame"
             target="_blank"
             rel="noreferrer"
             className="hover:text-ink transition-colors"
           >
             GitHub
           </a>
-          <a href="/api/public/rss" className="hover:text-ink transition-colors">
+          <a
+            href="https://github.com/Bkwame/kbbscodex.github.io/issues"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-ink transition-colors"
+          >
+            Report an error
+          </a>
+          <a
+            href="/api/public/rss"
+            title="RSS feed: paste this link into a feed reader to follow new posts"
+            className="hover:text-ink transition-colors"
+          >
             RSS
           </a>
         </div>

@@ -26,7 +26,7 @@ function Home() {
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
           A working notebook on genomics, sequencing, and the tools and algorithms behind
-          them — written as I learn.
+          them, written as I learn.
         </p>
       </section>
 

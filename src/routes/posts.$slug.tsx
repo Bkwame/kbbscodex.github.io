@@ -7,7 +7,10 @@ export const Route = createFileRoute("/posts/$slug")({
   loader: ({ params }) => {
     const post = getPostBySlug(params.slug);
     if (!post) throw notFound();
-    return { post };
+    // Return plain data only. The MDX component is a function and cannot be serialised
+    // from the server to the browser; doing so broke hydration on every post page.
+    const { Component: _Component, ...meta } = post;
+    return { post: meta };
   },
   head: ({ loaderData }) => {
     if (!loaderData) return {};
@@ -42,9 +45,12 @@ export const Route = createFileRoute("/posts/$slug")({
 
 function PostPage() {
   const { post } = Route.useLoaderData();
-  const Body = post.Component;
+  const Body = getPostBySlug(post.slug)!.Component;
   return (
-    <article className="mx-auto max-w-3xl px-5 pb-20 pt-10 sm:pt-14">
+    // Wide layout: text stays at a comfortable reading width (--measure), while figures
+    // break out to the full article width. See ".prose-wide" in styles.css.
+    <article className="mx-auto max-w-5xl px-5 pb-20 pt-10 [container-type:inline-size] sm:pt-14">
+      <div className="mx-auto max-w-[var(--measure)]">
       <Link
         to="/posts"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
@@ -77,8 +83,9 @@ function PostPage() {
           </div>
         )}
       </header>
+      </div>
 
-      <div className="prose">
+      <div className="prose prose-wide">
         <Body />
       </div>
     </article>
